@@ -40,8 +40,8 @@ REGION = boto3.Session().region_name                                            
 Definir el nombre del proyecto y los prefijos S3 para datos y salida, organizando y aislando recursos, facilitando el control de versiones y la separación de responsabilidades.
 
 ```
-PROJECT_NAME = "xgboost-binary-classification"
-DATA_PREFIX = f"{PROJECT_NAME}/data"
+PROJECT_NAME  = "xgboost-binary-classification"
+DATA_PREFIX   = f"{PROJECT_NAME}/data"
 OUTPUT_PREFIX = f"{PROJECT_NAME}/output"
 ```
 Construir rutas S3 para datos de entrada en formato parquet, conjuntos de entrenamiento y prueba, y artefactos de salida, asegurando que todas las interacciones con datos estén versionadas y aisladas.
