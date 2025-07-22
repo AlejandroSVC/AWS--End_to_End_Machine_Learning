@@ -132,7 +132,7 @@ if not NUMERIC_FEATURES:
     NUMERIC_FEATURES = [f.name for f in df.schema.fields
                         if str(f.dataType) in ('DoubleType', 'FloatType', 'IntegerType', 'LongType') and f.name != TARGET_COL]
 ```
-Si no se especifican características numéricas, inferirlas seleccionando columnas con tipos de datos numéricos, excluyendo la columna objetivo, para asegurar que solo se usen características relevantes.
+Si no se especifica características numéricas, inferirlas seleccionando columnas con tipos de datos numéricos, excluyendo la columna objetivo, para asegurar que solo se usen características relevantes.
 ```
 df = df.select(NUMERIC_FEATURES + [TARGET_COL])    # Seleccionar sólo las columnas relevantes 
 ```
