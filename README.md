@@ -206,7 +206,9 @@ rules = [
 Configurar DebuggerHookConfig para guardar datos de depuración en S3, permitiendo análisis de métricas de entrenamiento.
 Definir reglas para monitorear pérdida no decreciente y sobreajuste durante el entrenamiento, mejorando la confiabilidad del modelo.
 
-Crear Experimento de SageMaker para seguimiento (Mejor Práctica)
+Crear Experimento de SageMaker para seguimiento (Mejor Práctica):
+Crear un Experimento de SageMaker para organizar y rastrear ejecuciones de entrenamiento, proporcionando un nombre y descripción, facilitando la comparación y reproducibilidad de experimentos.
+
 ```
 from sagemaker.experiments.experiment import Experiment
 experiment = Experiment.create(
@@ -215,8 +217,6 @@ experiment = Experiment.create(
     sagemaker_boto_client=sm_client
 )
 ```
-Crear un Experimento de SageMaker para organizar y rastrear ejecuciones de entrenamiento, proporcionando un nombre y descripción, facilitando la comparación y reproducibilidad de experimentos.
-
 Dentro de un contexto de Ejecución para seguimiento de experimentos, inicializar un estimador XGBoost con versión de framework especificada, rol, configuraciones de instancia, ruta de salida, hiperparámetros para clasificación binaria, configuración de depurador, reglas y habilitar entrenamiento con instancias spot para eficiencia de costos. Establecer distribución a servidor de parámetros si se usan múltiples instancias, optimizando para entrenamiento distribuido.
 
 Contexto de seguimiento de experimentos
