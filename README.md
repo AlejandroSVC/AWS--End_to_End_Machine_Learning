@@ -154,7 +154,7 @@ Rellenar valores faltantes con 0 para manejar nulos en los datos, una estrategia
 
 Dividir el DataFrame en conjuntos de entrenamiento y prueba con 80% y 20% respectivamente, usando una semilla para reproducibilidad, asegurando divisiones consistentes para evaluación del modelo.
 ```
-train_df, test_df = df.randomSplit([0.8, 0.2], seed=42)    # Dividir datos (80% entrenamiento)
+train_df, test_df = df.randomSplit([0.8, 0.2], seed=42)    # Dividir datos (80% entrenamiento, 20% prueba)
 ```
 Guardar DataFrames de entrenamiento y prueba con rutas versionadas para trazabilidad (Mejor Práctica)
 La siguiente sección genera una cadena de versión basada en la marca de tiempo actual para trazabilidad.
