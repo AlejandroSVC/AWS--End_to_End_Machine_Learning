@@ -48,10 +48,10 @@ Construir rutas S3 para datos de entrada en formato parquet, conjuntos de entren
 
 Rutas S3 para datos y salidas:
 ```
-PARQUET_PATH = 	f's3://{BUCKET}/{DATA_PREFIX}/parquet/'  # Ubicación de datos de entrada
-TRAIN_PREFIX = 	f's3://{BUCKET}/{DATA_PREFIX}/train/'        # Salida de datos de entrenamiento
-TEST_PREFIX = 	f's3://{BUCKET}/{DATA_PREFIX}/test/'          # Salida de datos de testeo
-OUTPUT_PATH = 	f's3://{BUCKET}/{OUTPUT_PREFIX}/'            # Artefactos del modelo
+PARQUET_PATH = 	f's3://{BUCKET}/{DATA_PREFIX}/parquet/'    # Ubicación de datos de entrada
+TRAIN_PREFIX = 	f's3://{BUCKET}/{DATA_PREFIX}/train/'      # Salida de datos de entrenamiento
+TEST_PREFIX = 	f's3://{BUCKET}/{DATA_PREFIX}/test/'       # Salida de datos de testeo
+OUTPUT_PATH = 	f's3://{BUCKET}/{OUTPUT_PREFIX}/'          # Artefactos del modelo
 ```
 1.3. Inicializar sesión de SageMaker y obtener rol de ejecución
 
