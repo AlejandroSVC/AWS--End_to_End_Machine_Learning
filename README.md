@@ -77,7 +77,7 @@ Evitar codificar secretos e información sensible en los scripts.
                    
 ## Paso 2: Procesamiento de Datos con PySpark
 
-Este paso maneja la carga, preprocesamiento y división de datos, aprovechando PySpark para el procesamiento distribuido. Esta sección demuestra un procesamiento robusto de datos, con registro y control de versiones para garantizar trazabilidad y monitoreo, crucial para flujos de trabajo a gran escala.
+Este paso maneja la carga, preprocesamiento y división de datos, aprovechando PySpark para el procesamiento distribuido. Esta sección realiza un procesamiento robusto de datos, con registro y control de versiones para garantizar trazabilidad y monitoreo, crucial para flujos de trabajo a gran escala.
                    
 2.1. Inicializar Sesión de Spark y Usar Registro
 
