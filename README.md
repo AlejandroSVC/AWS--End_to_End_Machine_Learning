@@ -177,14 +177,14 @@ test_df.write.mode('overwrite').csv(test_path, header=True)
 3.1. Habilitar Depurador, Perfilador y Seguimiento de Experimentos
 
 Especificar el tipo y conteo de instancias para entrenamiento. Aquí, se usan instancias ml.c5.4xlarge, adecuadas para conjuntos de datos entre 10-100GB, con 2 instancias para entrenamiento distribuido, optimizando costo y rendimiento.
+
+Importar módulos necesarios para depuración en SageMaker, entradas de entrenamiento, estimador XGBoost y seguimiento de experimentos, mejorando la visibilidad del desarrollo del modelo.
 ```
 from sagemaker.debugger import Rule, rule_configs, DebuggerHookConfig
 from sagemaker.session import TrainingInput
 from sagemaker.xgboost.estimator import XGBoost
 from sagemaker.experiments.run import Run, load_run
 ```
-Importar módulos necesarios para depuración en SageMaker, entradas de entrenamiento, estimador XGBoost y seguimiento de experimentos, mejorando la visibilidad del desarrollo del modelo.
-
 Configuración de infraestructura de entrenamiento
 ```
 INSTANCE_TYPE = 'ml.c5.4xlarge'         # Para bases de datos de tamaño 10-100GB
