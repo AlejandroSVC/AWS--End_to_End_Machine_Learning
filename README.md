@@ -187,8 +187,8 @@ Importar módulos necesarios para depuración en SageMaker, entradas de entrenam
 
 Configuración de infraestructura de entrenamiento
 ```
-INSTANCE_TYPE = 'ml.c5.4xlarge'      # Para bases de datos de tamaño 10-100GB
-INSTANCE_COUNT = 2                         # Entrenamiento distribuído
+INSTANCE_TYPE = 'ml.c5.4xlarge'         # Para bases de datos de tamaño 10-100GB
+INSTANCE_COUNT = 2                      # Entrenamiento distribuído
 ```
 Habilitar Depurador y Perfilador
 ```
@@ -200,7 +200,7 @@ Reglas de calidad de entrenamiento
 ```
 rules = [
     Rule.sagemaker(rule_configs.loss_not_decreasing()),       # Detectar entrenamiento estancado
-    Rule.sagemaker(rule_configs.overfit())                                 # Detectar sobreajuste
+    Rule.sagemaker(rule_configs.overfit())                    # Detectar sobreajuste
              ]
 ```
 Configurar DebuggerHookConfig para guardar datos de depuración en S3, permitiendo análisis de métricas de entrenamiento.
@@ -228,24 +228,24 @@ with Run(experiment_name=experiment.experiment_name,
     # Configurar estimador XGBoost
 
     estimator = XGBoost(
-        framework_version='1.7-1',            # versión de XGBoost
+        framework_version='1.7-1',              # versión de XGBoost
         role=role,
         instance_count=INSTANCE_COUNT,
         instance_type=INSTANCE_TYPE,
-        output_path=OUTPUT_PATH,         # Ubicación de los artefactos del modelo
+        output_path=OUTPUT_PATH,                # Ubicación de los artefactos del modelo
         hyperparameters={
-            'objective': 'binary:logistic',         # Clasificación binaria
-            'num_round': 100,                         # Rondas de entrenamiento
-            'max_depth': 5,                              # Complejidad del árbol
-            'eta': 0.2,                                         # Tasa de aprendizaje
-            'eval_metric': 'auc',                       # Métrica de evaluación
+            'objective': 'binary:logistic',     # Clasificación binaria
+            'num_round': 100,                   # Rondas de entrenamiento
+            'max_depth': 5,                     # Complejidad del árbol
+            'eta': 0.2,                         # Tasa de aprendizaje
+            'eval_metric': 'auc',               # Métrica de evaluación
             'tree_method': 'gpu_hist' if 'p3' in INSTANCE_TYPE else 'hist',   # Aceleración de la GPU
         },
         debugger_hook_config=debugger_hook_config,
         rules=rules,
-        use_spot_instances=True,       # Instancias spot para ahorro de costos
+        use_spot_instances=True,             # Instancias spot para ahorro de costos
         max_wait=7200,                       # Establecer tiempo máximo de espera esperado en 2x
-        max_run=3600,                         #  Establecer tiempo máximo de entrenamiento esperado
+        max_run=3600,                        # Establecer tiempo máximo de entrenamiento esperado
         # Configuración de entrenamiento distribuído 
         distribution={
             'parameter_server': {'enabled': True}
@@ -278,7 +278,7 @@ Lanzar el trabajo de entrenamiento con entradas de entrenamiento y validación, 
 ```
 try:
     estimator.fit({'train': train_input, 'validation': test_input}, 
-                             wait=True)               # Bloquear hasta el término
+                             wait=True)           # Bloquear hasta el fin
     logger.info("Training job completed successfully.")
 except Exception as e:
     logger.error(f"Training failed: {e}")
@@ -309,9 +309,9 @@ Desplegar el modelo entrenado en un punto final con una instancia ml.m5.large, e
 ```
 predictor = estimator.deploy(
     initial_instance_count=1,
-    instance_type='ml.m5.large',                               # Instancia costo-efectiva
+    instance_type='ml.m5.large',                             # Instancia costo-efectiva
     endpoint_name=f"{PROJECT_NAME}-endpoint-{version}",
-    data_capture_config=data_capture_config       # Habilitar monitoreo
+    data_capture_config=data_capture_config                  # Habilitar monitoreo
 )
 ```
 Crear una configuración de punto final con una variante de producción usando el modelo del último trabajo de entrenamiento. Nota: Este paso podría ser redundante ya que estimator.deploy ya maneja la creación del punto final, indicando posible redundancia en la configuración.
@@ -319,11 +319,11 @@ Esta sección asegura que el modelo se despliegue con monitoreo, aunque la llama
 ```
 from sagemaker import Predictor
 
-sm_client.create_endpoint_config(           # Crear configuración de punto final
+sm_client.create_endpoint_config(                         # Crear configuración de punto final
     EndpointConfigName=f"{PROJECT_NAME}-endpoint-config-{version}",
     ProductionVariants=[{
         'VariantName': 'AllTraffic',
-        'ModelName': estimator.latest_training_job.name,    # Modelo entrenado
+        'ModelName': estimator.latest_training_job.name,  # Modelo entrenado
         'InitialInstanceCount': 1,
         'InstanceType': 'ml.m5.large'
     }]
