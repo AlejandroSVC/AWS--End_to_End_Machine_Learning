@@ -1,4 +1,4 @@
-# Cloud - XGBoost escalable en AWS SageMaker usando PySpark
+# Cloud - Machine Learning escalable en AWS SageMaker usando PySpark
 
 ## Descripción general
 
