@@ -291,11 +291,11 @@ Este paso asegura que el proceso de entrenamiento sea confiable, con registro pa
 Esta sección despliega el modelo y configura monitoreo:
 
 Usar Control de Versiones de Modelo y Auto-Escalado de Puntos Finales
+
+Importar DataCaptureConfig para monitorear modelos desplegados, crucial para análisis post-despliegue.
 ```
 from sagemaker.model_monitor import DataCaptureConfig
 ```
-Importar DataCaptureConfig para monitorear modelos desplegados, crucial para análisis post-despliegue.
-
 Habilitar Captura de Datos para monitoreo (Mejor Práctica):
 Configurar captura de datos para registrar 100% de solicitudes y respuestas de inferencia en S3 para monitoreo, asegurando visibilidad del rendimiento del modelo en producción.
 ```
