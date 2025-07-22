@@ -1,8 +1,8 @@
-# Cloud - Machine Learning escalable en AWS SageMaker usando PySpark
+# Cloud - Clasificación binaria de XGBoost en AWS Sagemaker usando PySpark
 
 ## Descripción general
 
-Este código crea un flujo de trabajo completo para entrenar e implementar un modelo de clasificación binaria con XGBoost en AWS SageMaker, aprovechando PySpark para el procesamiento de datos. Está diseñado para computación distribuida e incluye funciones de seguridad y monitoreo. Esta implementación proporciona una canalización (pipeline) integral (end-to-end) de nivel de producción para el modelo de clasificación que escala según el tamaño de la base de datos.
+Este código crea un flujo de trabajo completo para entrenar e implementar un modelo de clasificación binaria con XGBoost en AWS SageMaker, aprovechando PySpark para la lectura y procesamiento de big data. Está diseñado para computación distribuida e incluye funciones de seguridad y monitoreo. Esta implementación proporciona una canalización (pipeline) integral (end-to-end) de nivel de producción para el modelo de clasificación que escala según el tamaño de la base de datos.
 
 El código se divide en siete pasos principales, cada uno con tareas específicas:
 
