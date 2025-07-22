@@ -1,4 +1,4 @@
-# Cloud - Clasificación binaria de XGBoost en AWS Sagemaker usando PySpark
+# Cloud - XGBoost distribuido en AWS Sagemaker usando PySpark
 
 ## Descripción general
 
