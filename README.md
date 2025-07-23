@@ -27,7 +27,7 @@ import sagemaker
 import boto3
 import os
 ```
-1.1. Usar variables de entorno para información sensible (Mejor Práctica)
+**1.1. Usar variables de entorno para información sensible (Mejor Práctica)**
 
 Obtener el nombre del bucket S3 de las variables de entorno por seguridad; usar 'your-s3-bucket' como valor predeterminado si no está configurado. Obtener la región AWS de la sesión de Boto3, asegurando una configuración dinámica.
 
@@ -35,7 +35,7 @@ Obtener el nombre del bucket S3 de las variables de entorno por seguridad; usar 
 BUCKET = os.environ.get('SAGEMAKER_BUCKET', 'your-s3-bucket')
 REGION = boto3.Session().region_name                                                   # Actual región AWS
 ```
-1.2. Prefijos S3 para datos con control de versiones y aislamiento
+**1.2. Prefijos S3 para datos con control de versiones y aislamiento**
 
 Definir el nombre del proyecto y los prefijos S3 para datos y salida, organizando y aislando recursos, facilitando el control de versiones y la separación de responsabilidades.
 
@@ -53,7 +53,7 @@ TRAIN_PREFIX = 	f's3://{BUCKET}/{DATA_PREFIX}/train/'      # Salida de datos de 
 TEST_PREFIX = 	f's3://{BUCKET}/{DATA_PREFIX}/test/'       # Salida de datos de testeo
 OUTPUT_PATH = 	f's3://{BUCKET}/{OUTPUT_PREFIX}/'          # Artefactos del modelo
 ```
-1.3. Inicializar sesión de SageMaker y obtener rol de ejecución
+**1.3. Inicializar sesión de SageMaker y obtener rol de ejecución**
 
 Esta sección asegura una configuración segura y organizada, usando variables de entorno para información sensible como nombres de buckets S3, alineándose con las mejores prácticas de seguridad de AWS.
 
@@ -79,7 +79,7 @@ Evitar codificar secretos e información sensible en los scripts.
 
 Este paso maneja la carga, preprocesamiento y división de datos, aprovechando PySpark para el procesamiento distribuido. Esta sección realiza un procesamiento robusto de datos, con registro y control de versiones para garantizar trazabilidad y monitoreo, crucial para flujos de trabajo a gran escala.
                    
-2.1. Inicializar Sesión de Spark y Usar Registro
+**2.1. Inicializar Sesión de Spark y Usar Registro**
 
 Importar SparkSession para procesamiento de datos y logging para monitoreo, esencial para el manejo distribuido de datos y depuración.
 ```
@@ -100,7 +100,7 @@ Configurar el registro a nivel INFO para capturar eventos importantes y errores,
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 ```
-2.2. Leer Datos y Validar Esquema
+**2.2. Leer Datos y Validar Esquema**
 
 Leer los datos parquet desde S3 en un DataFrame de Spark, un formato optimizado para big data.
 Imprimir el esquema para verificar tipos de datos y asegurar compatibilidad. Registrar el número de filas cargadas para seguimiento del volumen de datos.
@@ -118,7 +118,7 @@ Verificar si la columna objetivo existe en el DataFrame; lanzar un error si no e
 
 Recomendación: Validar el esquema de datos temprano y registrar conteos de filas.
 
-2.3. Preprocesamiento de Datos con Monitoreo
+**2.3. Preprocesamiento de Datos con Monitoreo**
 
 Detectar automáticamente características numéricas si no están predefinidas
 ```
@@ -150,7 +150,7 @@ df = df.na.fill(0)            # Rellenar valores faltantes con 0
 ```
 Rellenar valores faltantes con 0 para manejar nulos en los datos, una estrategia común de imputación para datos numéricos, aunque pueden necesitarse ajustes específicos del dominio.
 
-2.4. División de Datos con Salida Versionada
+**2.4. División de Datos con Salida Versionada**
 
 Dividir el DataFrame en conjuntos de entrenamiento y prueba con 80% y 20% respectivamente, usando una semilla para reproducibilidad, asegurando divisiones consistentes para evaluación del modelo.
 ```
@@ -174,7 +174,7 @@ test_df.write.mode('overwrite').csv(test_path, header=True)
 ```
 ## Paso 3: Preparar Trabajo de Entrenamiento con XGBoost
 
-3.1. Habilitar Depurador, Perfilador y Seguimiento de Experimentos
+**3.1. Habilitar Depurador, Perfilador y Seguimiento de Experimentos**
 
 Especificar el tipo y conteo de instancias para entrenamiento. Aquí, se usan instancias ml.c5.4xlarge, adecuadas para conjuntos de datos entre 10-100GB, con 2 instancias para entrenamiento distribuido, optimizando costo y rendimiento.
 
