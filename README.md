@@ -1,4 +1,4 @@
-# Cloud - XGBoost distribuido en AWS Sagemaker usando PySpark
+# Cloud - XGBoost escalable y distribuido en AWS Sagemaker usando PySpark
 
 ![banner_AWS](docs/assets/images/banner_AWS.jpg)
 
